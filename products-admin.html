@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products - Mototuf Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar admin-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">Mototuf Admin</a>
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="index.html">Back to Store</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <h1>Manage Products</h1>
+        
+        <button id="show-add-form" class="btn btn-primary">Add New Product</button>
+        
+        <div id="product-form-container" style="display: none;">
+            <h2>Add / Edit Product</h2>
+            <form id="admin-product-form">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label for="product-name">Name</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Category</label>
+                    <select id="product-category" required>
+                        <option value="helmets">Helmets</option>
+                        <option value="jackets">Jackets</option>
+                        <option value="gloves">Gloves</option>
+                        <option value="boots">Boots</option>
+                        <option value="parts">Spare Parts</option>
+                        <option value="lights">Bike Lights</option>
+                        <option value="protective">Protective Gear</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Price ($)</label>
+                    <input type="number" id="product-price" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-stock">Stock</label>
+                    <input type="number" id="product-stock" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Image URL</label>
+                    <input type="url" id="product-image" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="product-featured"> Featured Product
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Product</button>
+                <button type="button" id="cancel-product-form" class="btn btn-secondary">Cancel</button>
+            </form>
+        </div>
+
+        <div id="admin-products-table">
+            <!-- JS will populate -->
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

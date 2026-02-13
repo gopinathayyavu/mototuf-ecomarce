@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Mototuf</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">Mototuf</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="cart.html">Cart <span id="cart-count-nav" class="cart-count">0</span></a></li>
+                    <li><a href="orders.html" class="active">Orders</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <h1>My Orders</h1>
+        <div id="orders-list" class="orders-list">
+            <!-- Orders injected by JS -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mototuf</h3>
+                    <p>Your one-stop shop for motorcycle gear.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="orders.html">Orders</a></li>
+                        <li><a href="admin/dashboard.html">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mototuf. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Display orders
+        document.addEventListener('DOMContentLoaded', function() {
+            const orders = JSON.parse(localStorage.getItem('mototuf_orders')) || [];
+            const list = document.getElementById('orders-list');
+            if (orders.length === 0) {
+                list.innerHTML = '<p class="empty-state">No orders yet.</p>';
+                return;
+            }
+            list.innerHTML = orders.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <span class="order-id">Order #${order.id}</span>
+                        <span class="order-date">${new Date(order.date).toLocaleDateString()}</span>
+                        <span class="order-status status-${order.status.toLowerCase()}">${order.status}</span>
+                    </div>
+                    <div class="order-items">
+                        ${order.items.map(item => `
+                            <div class="order-item">
+                                <span>${item.name} x${item.quantity}</span>
+                                <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="order-total">
+                        <strong>Total: $${order.total.toFixed(2)}</strong>
+                    </div>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>

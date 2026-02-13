@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mototuf | Premium Motorcycle Accessories</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation (loaded via JS for consistency, but hardcoded for multi-page) -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">Mototuf</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="cart.html">Cart <span id="cart-count-nav" class="cart-count">0</span></a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Gear Up for the <span class="highlight">Ride</span></h1>
+                <p>Premium motorcycle accessories for the discerning rider. Safety meets style.</p>
+                <a href="shop.html" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" data-cat="helmets">
+                    <h3>Helmets</h3>
+                </div>
+                <div class="category-card" data-cat="jackets">
+                    <h3>Jackets</h3>
+                </div>
+                <div class="category-card" data-cat="gloves">
+                    <h3>Gloves</h3>
+                </div>
+                <div class="category-card" data-cat="boots">
+                    <h3>Boots</h3>
+                </div>
+                <div class="category-card" data-cat="parts">
+                    <h3>Spare Parts</h3>
+                </div>
+                <div class="category-card" data-cat="lights">
+                    <h3>Bike Lights</h3>
+                </div>
+                <div class="category-card" data-cat="protective">
+                    <h3>Protective</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div id="featured-products-grid" class="products-grid">
+                <!-- JS will populate -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mototuf</h3>
+                    <p>Your one-stop shop for motorcycle gear.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="orders.html">Orders</a></li>
+                        <li><a href="dashboard.html">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mototuf. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Simple featured products display
+        document.addEventListener('DOMContentLoaded', function() {
+            const products = JSON.parse(localStorage.getItem('mototuf_products')) || [];
+            const featured = products.filter(p => p.featured).slice(0, 4);
+            const grid = document.getElementById('featured-products-grid');
+            if (grid) {
+                grid.innerHTML = featured.map(createProductCard).join('');
+            }
+        });
+    </script>
+</body>
+</html>
